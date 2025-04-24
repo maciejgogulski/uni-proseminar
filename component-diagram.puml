@@ -1,0 +1,38 @@
+@startuml "Architektura systemu klasteryzacji i segmentacji obrazów"
+!define RECTANGLE #LightBlue
+
+package "Żródła danych" {
+    component "Oxford Pet Dataset" as Dataset
+}
+
+package "Wstępne przetwarzanie" {
+    component "Zmiana rozmiaru obrazu" as Resizing
+    component "Normalizacja" as Normalization
+}
+
+package "Metody Klasteryzacji" {
+    component "K-means Clustering" as KMeans
+    component "DBSCAN Clustering" as DBSCAN
+}
+
+package "Metody Segmentacji" {
+    component "Watershed Segmentation" as Watershed
+    component "CNN-based Segmentation" as CNN
+}
+
+package "Wizualizacja" {
+    component "Wizualizacja Wyników" as Visualization
+}
+
+Dataset --> Resizing : dostarcza obrazy
+Resizing --> Normalization : zmienione obrazy
+Normalization --> KMeans : "wstępnie przetworzone obrazy"
+Normalization --> DBSCAN : "wstępnie przetworzone obrazy"
+Normalization --> Watershed : "wstępnie przetworzone obrazy"
+Normalization --> CNN : "wstępnie przetworzone obrazy"
+KMeans --> Visualization : wyniki klasteryzacji
+DBSCAN --> Visualization : wyniki klasteryzacji
+Watershed --> Visualization : wyniki segmentacji
+CNN --> Visualization : wyniki segmentacji
+
+@enduml
