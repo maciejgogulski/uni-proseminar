@@ -1,12 +1,12 @@
 numpy
-pandas
 matplotlib
 seaborn
+opencv-python
+pillow
 scikit-learn
 scipy
-opencv-python
+scikit-image
 tensorflow
-keras
-pillow
+tensorflow-datasets
 jupyter
 notebook
